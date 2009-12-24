@@ -1,0 +1,56 @@
+<html>
+<head>
+<script type="text/javascript">
+String.prototype.startsWith = function(str){
+    return (this.indexOf(str) === 0);
+}
+
+var url = null;
+var redirectTabId = undefined;
+var newTabId = undefined;
+var protocol =  undefined;
+
+function setUrl(url) {	
+	var parts = url.split(':');	
+	if(parts.length > 1) { protocol = parts[0] } else { protocol = "http://" };
+	if(protocol == "about" || url.startsWith("file:")) { 
+		this.url = url; 	
+	} else {
+		var right = url.split('://')
+		if(right != undefined && right != null && right.length > 1) {
+			this.url = protocol + right[1];
+		} else {this.url = protocol + url;}	
+	}
+	localStorage["url"]  = this.url;
+}
+
+function setRedirectTabId(tabId) {
+	redirectTabId = tabId;
+}
+
+function init() {
+   url = localStorage["url"] || "http://www.facebook.com";
+}
+
+function goToUrl(tabId,u) {
+	chrome.tabs.update(tabId, {"url":u});
+}
+
+function r(tabId) {
+	chrome.tabs.update(tabId, {"url":this.url});
+}
+
+chrome.tabs.onUpdated.addListener(function(tabId,info,tab) {
+    if (info.status === 'loading')
+		console.log('Loading url ... ' + tab.url)
+	if(info.status === 'complete')
+		console.log('Finished loading url ... ' + tab.url)
+});
+
+chrome.tabs.onCreated.addListener(function(tab) {
+	newTabId = tab.id
+});
+</script>
+</head>
+<body onload="init()"></body>
+</html>
