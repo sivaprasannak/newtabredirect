@@ -9,19 +9,33 @@ var url = null;
 var redirectTabId = undefined;
 var newTabId = undefined;
 var protocol =  undefined;
+var allowedProtocols = ["http://","https://","about:","file://", "file:\\", "file:///"];
 
-function setUrl(url) {	
-	var parts = url.split(':');	
-	if(parts.length > 1) { protocol = parts[0] } else { protocol = "http://" };
-	if(protocol == "about" || url.startsWith("file:")) { 
-		this.url = url; 	
-	} else {
-		var right = url.split('://')
-		if(right != undefined && right != null && right.length > 1) {
-			this.url = protocol + right[1];
-		} else {this.url = protocol + url;}	
+function setUrl(url) {
+		if(protocolPasses(url) && url.length > 8) { /* 8 is arbitrary */
+			this.url = url; 	
+		} else {
+			protocol = 'http://'; /* force http */
+			var right = url.split('://')
+			if(right != undefined && right != null && right.length > 1) {
+				this.url = protocol + right[1];
+			} else {this.url = protocol + url; /* this will redirect to http:// if url is empty */}	
+		}
+		localStorage["url"]  = this.url;
+		
+	function protocolPasses(url) {
+		if(typeof(url) == 'undefined' || url == null) { return false; }
+		if (url.startsWith(allowedProtocols[3]) && !url.startsWith(allowedProtocols[5])) {
+			url.replace(allowedProtocols[3], allowedProtocols[5]);
+		} else if (url.startsWith(allowedProtocols[4])) {
+			url.replace(allowedProtocols[4], allowedProtocols[5]);
+		}
+		
+		for(var p in allowedProtocols) {
+			if(url.startsWith(allowedProtocols[p])) { return true;}
+		}
+		return false;
 	}
-	localStorage["url"]  = this.url;
 }
 
 function setRedirectTabId(tabId) {
