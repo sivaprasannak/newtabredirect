@@ -9,7 +9,7 @@ var url = null;
 var redirectTabId = undefined;
 var newTabId = undefined;
 var protocol =  undefined;
-var allowedProtocols = ["http://","https://","about:","file://", "file:\\", "file:///"];
+var allowedProtocols = ["http://","https://","about:","file://", "file:\\", "file:///", "chrome://","chrome-internal://"];
 
 function setUrl(url) {
 		if(protocolPasses(url) && url.length > 8) { /* 8 is arbitrary */

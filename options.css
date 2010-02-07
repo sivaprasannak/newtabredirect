@@ -76,6 +76,22 @@ ul.links li {
 	list-style-type:none;
 }
 
+ul.horizontal-links {
+	padding:0; 
+	margin:0; 
+	white-space:nowrap;
+	list-style-type:none;
+}
+
+ul.horizontal-links li {
+	display:inline;
+	float:left;
+}
+
+ul.horizontal-links li a {
+	padding: 0.2em 1em;
+}
+
 .fix {
 	clear:both;
 }

@@ -1,7 +1,8 @@
 {
   "name": "New Tab Redirect!",
-  "description": "Sets a specific URL to load in new tabs.",
-  "version": "0.0.1.108",
+  "description": "Sets a user-specified URL to load in new tabs.",
+  "version": "0.0.1.109",
+  "default_locale": "en",
   "background_page": "background.html",
   "options_page":"options.html",
   "chrome_url_overrides": {

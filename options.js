@@ -1,4 +1,14 @@
-var aboutPages = ["about:blank","about:version", "about:plugins","about:cache", "about:memory","about:histograms","about:dns"];
+String.prototype.startsWith = function(str) {
+	return (this.indexOf(str)===0);
+}
+var chromePages = {
+	Extensions : "chrome://extensions/",
+	History : "chrome://history/",
+	Downloads : "chrome://downloads/",
+	NewTab : "chrome-internal://newtab/"
+}
+var aboutPages = ["about:blank","about:version", "about:plugins","about:cache", "about:memory","about:histograms","about:dns",
+	"chrome://extensions/","chrome://history/","chrome://downloads/","chrome-internal://newtab/"];
 var popularPages = { 
 	"Facebook":"www.facebook.com",
 	"MySpace":"www.myspace.com",
@@ -7,6 +17,7 @@ var popularPages = {
 	"Delicious":"www.delicious.com",
 	"Slashdot":"www.slashdot.org"
 };
+
 	
 // save options to localStorage.
 function save_options() {
@@ -60,9 +71,15 @@ function saveQuickLink(url){
 
 $(document).ready(function(){
 	restore_options();
+	$.each(chromePages, function(k,v) {
+		var anchor = "<a href=\"javascript:saveQuickLink('"+v+"');\">"+k+"</a>";
+		$('#chromes').append("<li>" + anchor + "</li>");
+	});
 	$.each(aboutPages, function() {
-		var anchor = "<a href=\"javascript:saveQuickLink('"+this+"');\">"+this+"</a>";
-		$('#abouts').append("<li>" + anchor + "</li>");
+		if(this.startsWith("about:")) { /* quick fix to handle chrome pages elsewhere */
+			var anchor = "<a href=\"javascript:saveQuickLink('"+this+"');\">"+this+"</a>";
+			$('#abouts').append("<li>" + anchor + "</li>");
+		}
 	});
 	$.each(popularPages, function(k,v) {
 		var anchor = "<a href=\"javascript:saveQuickLink('"+v+"');\">"+k+"</a>";
