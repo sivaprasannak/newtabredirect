@@ -5,10 +5,10 @@ var chromePages = {
 	Extensions : "chrome://extensions/",
 	History : "chrome://history/",
 	Downloads : "chrome://downloads/",
-	NewTab : "chrome-internal://newtab/"
+	NewTab : "chrome-internal://newtab/",
+  Bookmarks : "chrome://bookmarks/"
 }
-var aboutPages = ["about:blank","about:version", "about:plugins","about:cache", "about:memory","about:histograms","about:dns",
-	"chrome://extensions/","chrome://history/","chrome://downloads/","chrome-internal://newtab/"];
+var aboutPages = ["about:blank","about:version", "about:plugins","about:cache", "about:memory","about:histograms","about:dns", "about:terms", "about:credits", "about:net-internals"];
 var popularPages = { 
 	"Facebook":"www.facebook.com",
 	"MySpace":"www.myspace.com",
