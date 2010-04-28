@@ -6,7 +6,8 @@ var chromePages = {
 	History : "chrome://history/",
 	Downloads : "chrome://downloads/",
 	NewTab : "chrome-internal://newtab/",
-  Bookmarks : "chrome://bookmarks/"
+  Bookmarks : "chrome://bookmarks/",
+  Internals : "chrome://net-internals"
 }
 var aboutPages = ["about:blank","about:version", "about:plugins","about:cache", "about:memory","about:histograms","about:dns", "about:terms", "about:credits", "about:net-internals"];
 var popularPages = { 
