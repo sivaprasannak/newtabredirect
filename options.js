@@ -36,6 +36,7 @@ function save_options() {
 
 function save(good,url) {
 	if(good) {
+		chrome.extension.getBackgroundPage().setHideText($('#hidetext').is(':checked'));
 		chrome.extension.getBackgroundPage().setUrl(url);
 		$('#status').text("Options Saved.");
 	} else {
@@ -52,6 +53,8 @@ function save(good,url) {
 function restore_options() {
 	var url = chrome.extension.getBackgroundPage().url || "http://www.facebook.com/";	
 	 $('#custom-url').val(url);
+	 var check = chrome.extension.getBackgroundPage().hidetext;
+	 $('#hidetext').attr('checked', check);
 }
 
 function isValidURL(url) {

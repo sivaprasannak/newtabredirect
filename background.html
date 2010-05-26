@@ -5,6 +5,7 @@ String.prototype.startsWith = function(str){
     return (this.indexOf(str) === 0);
 }
 
+var hidetext = localStorage["hidetext"] || false;
 var url = null;
 var redirectTabId = undefined;
 var newTabId = undefined;
@@ -37,7 +38,7 @@ function setUrl(url) {
 		return false;
 	}
 }
-
+function setHideText(bool) {hidetext = bool; localStorage["hidetext"] = bool; }
 function setRedirectTabId(tabId) {
 	redirectTabId = tabId;
 }
