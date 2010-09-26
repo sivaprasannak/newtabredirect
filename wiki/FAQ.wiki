@@ -26,7 +26,7 @@ http://www.google.com/support/chrome/bin/answer.py?hl=en&answer=187443
 
 If you still have trouble finding the options page, you may copy/paste one of the following links into your address bar and hit ENTER:
   * All extensions: chrome://extensions/
-  * New Tab Redirec options:] chrome-extension://icpgjfneehieebagbmdbhnlpiopdcmna/options.html
+  * New Tab Redirect options: chrome-extension://icpgjfneehieebagbmdbhnlpiopdcmna/options.html
 
 However, I recommend becoming familiar with accessing the options pages for extensions you decide to install.  Although the Chrome team has done a fairly good job of designing an extension system which provides a great deal of security, there are still extension out there which can track and maintain your personal information without your consent.  This, of course, violates the terms which all developers must accept before submitting an extension to the gallery, but that doesn't stop certain people from breaking the rules.  Gaining the trust of users is one reason why I've hosted the code for the extension.
 
